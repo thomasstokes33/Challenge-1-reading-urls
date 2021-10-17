@@ -20,7 +20,7 @@ public class EcsIntranet {
         System.out.println(newurl);
         try {
             URL fetcher= new URL(newurl);
-            System.out.println(fetcher.getContent());
+            System.out.println(fetcher.getContent()); //This doesn't affect the final result but it displays the type of connection
             URLConnection connection=fetcher.openConnection();
             BufferedReader contents=new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String html;
