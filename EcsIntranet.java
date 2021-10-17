@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
-public class SecureReader {
+public class EcsIntranet {
     public static void main(String[] args) {
         System.out.print("Type an input ");
         BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
@@ -14,7 +14,7 @@ public class SecureReader {
         } catch (IOException ioe) {
             username="";
         }
-        String newurl= "https://www.secure.ecs.soton.ac.uk/people/";
+        String newurl= "https://www.secure.ecs.soton.ac.uk/people/";//different address
         newurl=newurl+username;
         
         System.out.println(newurl);

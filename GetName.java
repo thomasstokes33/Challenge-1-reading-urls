@@ -19,7 +19,7 @@ public class GetName {
         
         System.out.println(newurl);
         try {
-            URL fetcher= new URL(newurl);
+            URL fetcher= new URL(newurl); //url object created
             System.out.println(fetcher.getContent());
             URLConnection connection=fetcher.openConnection();
             BufferedReader contents=new BufferedReader(new InputStreamReader(connection.getInputStream()));
