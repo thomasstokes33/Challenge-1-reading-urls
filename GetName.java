@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.*;
 import java.net.*;
+import java.util.regex.*;
 public class GetName {
     public static void main(String[] args) {
         System.out.print("Type an input ");
@@ -28,11 +29,12 @@ public class GetName {
                 
                 finalStr+=html;
             }
-            if ((finalStr.contains("Dr David Millard"))==true) {
-                System.out.println("horray");
-            } else {
-                System.out.println(":{");;
-            }
+            Pattern rgx=Pattern.compile("property=\"name\">([^<]*)");
+            Matcher results=rgx.matcher(finalStr);
+            results.find();
+            System.out.println(results.group(1));
+
+
         } catch (MalformedURLException mue) {
             ;
         } catch (IOException ioe){
