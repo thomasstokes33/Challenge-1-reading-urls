@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
-public class GetName {
+public class SecureReader {
     public static void main(String[] args) {
         System.out.print("Type an input ");
         BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
