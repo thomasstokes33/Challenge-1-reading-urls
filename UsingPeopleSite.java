@@ -6,17 +6,17 @@ import java.net.*;
 import java.util.regex.*;
 public class UsingPeopleSite {
     public static void main(String[] args) {
-        System.out.print("Type an input ");
-        BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
-        String username;
-        try{
-            username=brInp.readLine();
-        } catch (IOException ioe) {
-            username="";
-        }
+        // System.out.print("Type an input ");
+        // BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
+        // String username;
+        // try{
+        //     username=brInp.readLine();
+        // } catch (IOException ioe) {
+        //     username="";
+        // }
         String newurl= "https://www.ecs.soton.ac.uk/people/";
         
-        
+       
         System.out.println(newurl);
         try {
             URL fetcher= new URL(newurl); //url object created
@@ -29,13 +29,20 @@ public class UsingPeopleSite {
                 
                 finalStr+=html;
             }
-            String theregex= "<tr>.*people.*\">([\\D]*)<\\/a>.*position.*("+username;
-            theregex=theregex+")";
+            //people.*\">([\\D]*)<\\/a>.*position.*(km3@ecs.soton.ac.uk)
+            String theregex= ".*(K.Martinez@soton.ac.uk)";
+         
             Pattern rgx=Pattern.compile(theregex);
             Matcher results=rgx.matcher(finalStr);
+            System.out.println("pre");
+            results.find();
+            
+            String smallerResults=results.group(0);
+            theregex="people.*\">([\\D]*)<\\/a>.*position.*(K.Martinez@soton.ac.uk)";
+            rgx=Pattern.compile(theregex);
+            results=rgx.matcher(smallerResults);
             results.find();
             System.out.println(results.group(1));
-
 
         } catch (MalformedURLException mue) {
             ;
