@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
-public class EcsIntranet {
+public class UsingPeopleSite {
     public static void main(String[] args) {
         System.out.print("Type an input ");
         BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
@@ -14,13 +14,13 @@ public class EcsIntranet {
         } catch (IOException ioe) {
             username="";
         }
-        String newurl= "https://www.secure.ecs.soton.ac.uk/people/";//different address
-        newurl=newurl+username;
+        String newurl= "https://www.ecs.soton.ac.uk/people/";
+        
         
         System.out.println(newurl);
         try {
-            URL fetcher= new URL(newurl);
-            System.out.println(fetcher.getContent()); //This doesn't affect the final result but it displays the type of connection
+            URL fetcher= new URL(newurl); //url object created
+            System.out.println(fetcher.getContent());
             URLConnection connection=fetcher.openConnection();
             BufferedReader contents=new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String html;
@@ -29,13 +29,18 @@ public class EcsIntranet {
                 
                 finalStr+=html;
             }
-           
+            String theregex= "<tr>.*people.*\">([\\D]*)<\\/a>.*position.*("+username;
+            theregex=theregex+")";
+            Pattern rgx=Pattern.compile(theregex);
+            Matcher results=rgx.matcher(finalStr);
+            results.find();
+            System.out.println(results.group(1));
 
 
         } catch (MalformedURLException mue) {
-            System.out.println("malformed");
+            ;
         } catch (IOException ioe){
-            System.out.println("malformed");
+            ;
         }
         
         
