@@ -6,14 +6,14 @@ import java.net.*;
 import java.util.regex.*;
 public class UsingPeopleSite {
     public static void main(String[] args) {
-        // System.out.print("Type an input ");
-        // BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
-        // String username;
-        // try{
-        //     username=brInp.readLine();
-        // } catch (IOException ioe) {
-        //     username="";
-        // }
+        System.out.print("Type an input ");
+        BufferedReader brInp=new BufferedReader(new InputStreamReader(System.in));
+        String username;
+        try{
+            username=brInp.readLine();
+        } catch (IOException ioe) {
+            username="";
+        }
         String newurl= "https://www.ecs.soton.ac.uk/people/";
         
        
@@ -30,15 +30,16 @@ public class UsingPeopleSite {
                 finalStr+=html;
             }
             //people.*\">([\\D]*)<\\/a>.*position.*(km3@ecs.soton.ac.uk)
-            String theregex= ".*(K.Martinez@soton.ac.uk)";
-         
+            String theregex= ".*"+username;
+            
             Pattern rgx=Pattern.compile(theregex);
             Matcher results=rgx.matcher(finalStr);
-            System.out.println("pre");
+            
             results.find();
             
             String smallerResults=results.group(0);
-            theregex="people.*\">([\\D]*)<\\/a>.*position.*(K.Martinez@soton.ac.uk)";
+            System.out.println("pre");
+            theregex="people.*\">([\\D]*)<\\/a>.*position.*("+username+")";
             rgx=Pattern.compile(theregex);
             results=rgx.matcher(smallerResults);
             results.find();
